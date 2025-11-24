@@ -1,0 +1,36 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-y: auto;
+  font-family: var(--font-sans), sans-serif;
+
+  //background-image: linear-gradient(to left, rgba(32, 34, 40, 0.75), rgba(32, 34, 40, 0.75)), url("/background01.jpg");
+  background-image: linear-gradient(to left, rgba(32, 34, 40, 0.9), rgba(32, 34, 40, 0.9)), url("/background01.jpg");
+  background-size: cover;
+  background-position: left center;
+
+  color: white;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+:root {
+  --bg-raised: #080a0f;
+  --border: #292a2f;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    background-position: 20% center;
+  }
+}
