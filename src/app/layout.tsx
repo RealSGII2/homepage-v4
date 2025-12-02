@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import styles from "@/app/page.module.scss";
 import Image from "next/image";
-import TabLink from "@/app/client";
+import TabLink, { Header } from "@/app/client";
 
 const geistSans = Geist({
   variable: "--font-sans",
@@ -17,15 +17,16 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "RealSGII2",
-  description: "Future truck driver and hobbyist web developer. My link-in-bio with information about me!",
+  description:
+    "Future truck driver and hobbyist web developer. My link-in-bio with information about me!",
   openGraph: {
     siteName: "RealSGII2",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#4c94fe'
-}
+  themeColor: "#4c94fe",
+};
 
 export default function RootLayout({
   children,
@@ -48,18 +49,23 @@ export default function RootLayout({
               RealSGII2 <span className={styles.guild}>GOOG</span>
             </h1>
             <p className={styles.staticName}>@sgii2</p>
-
-            <div className={styles.tabRow}>
-              <TabLink href={"/"}>About me</TabLink>
-              <TabLink href={"/trucks"}>Truck interest</TabLink>
-              <TabLink href={"/blog"}>Blog</TabLink>
-            </div>
           </header>
 
-          {children}
+          <Header />
+
+          <div className={styles.tabRow}>
+            <TabLink href={"/"}>About me</TabLink>
+            <TabLink href={"/trucks"}>Truck interest</TabLink>
+            <TabLink href={"/blog"}>Blog</TabLink>
+          </div>
+
+          <div className={styles.mainContent}>
+            {children}
+          </div>
 
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} RealSGII2. Built with my own keyboard.
+            &copy; {new Date().getFullYear()} RealSGII2. Built with my own
+            keyboard.
           </p>
         </div>
       </body>

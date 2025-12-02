@@ -1,9 +1,13 @@
 import styles from "./page.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import servers from './servers.json'
+import servers from "./servers.json";
 
-export default async function Home({ searchParams }: { searchParams: Promise<{ s: string; }> }) {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ s: string }>;
+}) {
   const { s: serverId } = await searchParams;
   const server = serverId ? servers[serverId as keyof typeof servers] : null;
 
@@ -27,7 +31,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
           <div>
             <p>
               I&apos;ve officially swapped careers to be a truck driver.{" "}
-              <Link href={"/trucks"}>
+              <Link href={"/trucks"} style={{ float: "right" }}>
                 Read my story{" "}
                 <svg
                   width="16"
@@ -38,7 +42,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
                 >
                   <path
                     d="M5 12H19M19 12L14 7M19 12L14 17"
-                    stroke="#4C93FC"
+                    stroke="var(--primary-fg)"
                     stroke-width="2.5"
                     stroke-linecap="round"
                   />
@@ -46,15 +50,22 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
               </Link>
             </p>
 
-            {!!server && <>
-              <div />
+            {!!server && (
+              <>
+                <div />
 
-              <p>This page showcases specific information for <b>{server.name}</b>.</p>
-            </>}
+                <p>
+                  This page showcases specific information for{" "}
+                  <b>{server.name}</b>.
+                </p>
+              </>
+            )}
           </div>
         </div>
 
-        <p>{server?.body ?? 'Future truck driver and hobbyist web developer.'}</p>
+        <p>
+          {server?.body ?? "Future truck driver and hobbyist web developer."}
+        </p>
 
         <h2>Interests</h2>
         <div className={styles.itemGrid}>
@@ -274,36 +285,37 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
             </svg>
           </a>
           <a
-            href="https://www.reddit.com/user/SGII2/"
+            href="https://www.youtube.com/@RealSGII2"
             target="_blank"
             rel="noreferrer"
           >
             <div>
               <svg
-                width="20"
                 xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 256 256"
+                className="external-icon"
+                viewBox="0 0 28.57  20"
+                width="20"
+                focusable="false"
               >
-                <defs>
-                  <style>
-                    {`.cls-1 {fill: #fff;}
-
-                    .cls-1, .cls-2 {stroke - width: 0px;}
-
-                    .cls-2 {fill: #ff4500;}`}
-                  </style>
-                </defs>
-                <path
-                  className="cls-2"
-                  d="m128,0h0C57.31,0,0,57.31,0,128h0c0,35.35,14.33,67.35,37.49,90.51l-24.38,24.38c-4.84,4.84-1.41,13.11,5.43,13.11h109.46s0,0,0,0c70.69,0,128-57.31,128-128h0C256,57.31,198.69,0,128,0Z"
-                ></path>
-                <path
-                  className="cls-1"
-                  d="m154.04,60.36c2.22,9.41,10.67,16.42,20.76,16.42,11.78,0,21.33-9.55,21.33-21.33s-9.55-21.33-21.33-21.33c-10.3,0-18.89,7.3-20.89,17.01-17.25,1.85-30.72,16.48-30.72,34.21,0,.04,0,.07,0,.11-18.76.79-35.89,6.13-49.49,14.56-5.05-3.91-11.39-6.24-18.27-6.24-16.51,0-29.89,13.38-29.89,29.89,0,11.98,7.04,22.3,17.21,27.07.99,34.7,38.8,62.61,85.31,62.61s84.37-27.94,85.31-62.67c10.09-4.8,17.07-15.09,17.07-27,0-16.51-13.38-29.89-29.89-29.89-6.85,0-13.16,2.31-18.2,6.19-13.72-8.49-31.04-13.83-49.99-14.54,0-.03,0-.05,0-.08,0-12.7,9.44-23.24,21.68-24.97Zm-81.54,82.27c.5-10.84,7.7-19.16,16.07-19.16s14.77,8.79,14.27,19.63c-.5,10.84-6.75,14.78-15.13,14.78s-15.71-4.41-15.21-15.25Zm95.06-19.16c8.38,0,15.58,8.32,16.07,19.16.5,10.84-6.84,15.25-15.21,15.25s-14.63-3.93-15.13-14.78c-.5-10.84,5.89-19.63,14.27-19.63Zm-9.96,44.24c1.57.16,2.57,1.79,1.96,3.25-5.15,12.31-17.31,20.96-31.5,20.96s-26.34-8.65-31.5-20.96c-.61-1.46.39-3.09,1.96-3.25,9.2-.93,19.15-1.44,29.54-1.44s20.33.51,29.54,1.44Z"
-                ></path>
+                <svg
+                  viewBox="0 0 28.57 20"
+                  preserveAspectRatio="xMidYMid meet"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g>
+                    <path
+                      d="M27.9727 3.12324C27.6435 1.89323 26.6768 0.926623 25.4468 0.597366C23.2197 2.24288e-07 14.285 0 14.285 0C14.285 0 5.35042 2.24288e-07 3.12323 0.597366C1.89323 0.926623 0.926623 1.89323 0.597366 3.12324C2.24288e-07 5.35042 0 10 0 10C0 10 2.24288e-07 14.6496 0.597366 16.8768C0.926623 18.1068 1.89323 19.0734 3.12323 19.4026C5.35042 20 14.285 20 14.285 20C14.285 20 23.2197 20 25.4468 19.4026C26.6768 19.0734 27.6435 18.1068 27.9727 16.8768C28.5701 14.6496 28.5701 10 28.5701 10C28.5701 10 28.5677 5.35042 27.9727 3.12324Z"
+                      fill="#FF0000"
+                    ></path>
+                    <path
+                      d="M11.4253 14.2854L18.8477 10.0004L11.4253 5.71533V14.2854Z"
+                      fill="white"
+                    ></path>
+                  </g>
+                </svg>
               </svg>
             </div>
-            SGII2
+            RealSGII2
             <svg
               className={styles.external}
               aria-hidden="true"
@@ -340,6 +352,54 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ s
               </svg>
             </div>
             RealSGII2
+            <svg
+              className={styles.external}
+              aria-hidden="true"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="currentColor"
+                d="M12.7 3.3a1 1 0 0 0-1.4 0l-5 5a1 1 0 0 0 1.4 1.4L11 6.42V20a1 1 0 1 0 2 0V6.41l3.3 3.3a1 1 0 0 0 1.4-1.42l-5-5Z"
+                className=""
+              ></path>
+            </svg>
+          </a>
+          <a
+            href="https://www.reddit.com/user/SGII2/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div>
+              <svg
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 256"
+              >
+                <defs>
+                  <style>
+                    {`.cls-1 {fill: #fff;}
+
+                    .cls-1, .cls-2 {stroke - width: 0px;}
+
+                    .cls-2 {fill: #ff4500;}`}
+                  </style>
+                </defs>
+                <path
+                  className="cls-2"
+                  d="m128,0h0C57.31,0,0,57.31,0,128h0c0,35.35,14.33,67.35,37.49,90.51l-24.38,24.38c-4.84,4.84-1.41,13.11,5.43,13.11h109.46s0,0,0,0c70.69,0,128-57.31,128-128h0C256,57.31,198.69,0,128,0Z"
+                ></path>
+                <path
+                  className="cls-1"
+                  d="m154.04,60.36c2.22,9.41,10.67,16.42,20.76,16.42,11.78,0,21.33-9.55,21.33-21.33s-9.55-21.33-21.33-21.33c-10.3,0-18.89,7.3-20.89,17.01-17.25,1.85-30.72,16.48-30.72,34.21,0,.04,0,.07,0,.11-18.76.79-35.89,6.13-49.49,14.56-5.05-3.91-11.39-6.24-18.27-6.24-16.51,0-29.89,13.38-29.89,29.89,0,11.98,7.04,22.3,17.21,27.07.99,34.7,38.8,62.61,85.31,62.61s84.37-27.94,85.31-62.67c10.09-4.8,17.07-15.09,17.07-27,0-16.51-13.38-29.89-29.89-29.89-6.85,0-13.16,2.31-18.2,6.19-13.72-8.49-31.04-13.83-49.99-14.54,0-.03,0-.05,0-.08,0-12.7,9.44-23.24,21.68-24.97Zm-81.54,82.27c.5-10.84,7.7-19.16,16.07-19.16s14.77,8.79,14.27,19.63c-.5,10.84-6.75,14.78-15.13,14.78s-15.71-4.41-15.21-15.25Zm95.06-19.16c8.38,0,15.58,8.32,16.07,19.16.5,10.84-6.84,15.25-15.21,15.25s-14.63-3.93-15.13-14.78c-.5-10.84,5.89-19.63,14.27-19.63Zm-9.96,44.24c1.57.16,2.57,1.79,1.96,3.25-5.15,12.31-17.31,20.96-31.5,20.96s-26.34-8.65-31.5-20.96c-.61-1.46.39-3.09,1.96-3.25,9.2-.93,19.15-1.44,29.54-1.44s20.33.51,29.54,1.44Z"
+                ></path>
+              </svg>
+            </div>
+            SGII2
             <svg
               className={styles.external}
               aria-hidden="true"
