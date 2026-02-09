@@ -39,7 +39,7 @@ export default function RootLayout({
         <div className={styles.page}>
           <header>
             <Image
-              src="https://cdn.discordapp.com/avatars/258706134850863106/9fe99a31dd186042e1f2cfe7c8009506.png"
+              src="https://cdn.discordapp.com/avatars/258706134850863106/a_b0b270afff8907f049856d8f3a3108c9.gif"
               width={128}
               height={128}
               alt="RealSGII2's avatar"
