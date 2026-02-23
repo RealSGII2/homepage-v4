@@ -40,7 +40,7 @@ export function ClickMe() {
 
   useEffect(() => {
     const onListener = () => {
-      console.log("tap detected");
+      console.log("[Anticheat.touchscreen] Tap detected, all clicks for next 100ms flagged");
       setIsTap(true);
     };
     const offListener = () => setTimeout(setIsTap, 100, false);
@@ -75,7 +75,6 @@ export function ClickMe() {
         break;
       case 6:
         if (textInt != null) break;
-        console.warn("INT");
         setTextInt(
           setInterval(() => {
             setText(
@@ -147,7 +146,13 @@ export function ClickMe() {
 
       setTimeout(
         setPosition,
-        !force ? Math.max(1, (Date.now() - startTime) / 2000) : 1,
+        !force
+          ? Math.max(
+              1,
+              ((Date.now() - startTime) / 3000) *
+                (1 + +(window.localStorage.getItem("gameLossCount") ?? "0")),
+            )
+          : 1,
         random(0, width - 300),
         random(92, height - 200),
       );
@@ -174,14 +179,30 @@ export function ClickMe() {
         setActive(true);
         requestAnimationFrame(reposition as () => void);
         audioRef.current?.play();
-        setResetTimeout(setTimeout(() => window.location.reload(), 90 * 1000));
+        setResetTimeout(
+          setTimeout(() => {
+            window.localStorage.setItem(
+              "gameLossCount",
+              (+(window.localStorage.getItem("gameLossCount") ?? '0') + 1).toString(),
+            );
+            window.location.reload();
+          }, 90 * 1000),
+        );
         setLastClickTime(Date.now());
         setStartTime(Date.now());
         reposition(true);
 
         let interval: NodeJS.Timeout | null = null;
         interval = setInterval(() => {
+          const rects = current.getBoundingClientRect();
+          if (rects.x > document.body.clientWidth || rects.y > document.body.clientHeight) reposition();
+
+          if (window.devicePixelRatio > 1 && document.body.clientWidth > 600) {
+            console.log('[Antichat.zoom] Zoom was detected while mobile breakpoints not hit, next click may be flagged')
+          }
+
           if (window.devicePixelRatio > 2 && document.body.clientWidth > 600) {
+            console.log('[Antichat.zoom] Zoom autofire threshold hit, forcing anticheat ending')
             clearInterval(interval!);
 
             (
@@ -225,9 +246,8 @@ export function ClickMe() {
         setClickRate([...clickRate, Date.now() - lastClickTime].slice(-50));
         setLastClickTime(Date.now());
 
-        console.log(clickRate);
         console.log(
-          "avgClickRate: " +
+          "[Anticheat.autoClicker] Average click rate to date: " +
             clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000 +
             "s",
         );
@@ -254,6 +274,8 @@ export function ClickMe() {
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "cheaters will not be tolerated";
 
+    window.localStorage.setItem("gameLossCount", "0");
+
     reset();
     document.body.classList.add("gameCompleted");
     (document.querySelector("audio#shutdown") as HTMLAudioElement).play();
@@ -274,6 +296,15 @@ export function ClickMe() {
             Soundtrack: &quot;The Essence of Machine&quot; by blinch for Please
             Don&apos;t Touch Anything.{" "}
           </span>
+          <br />
+          <br />
+          Click the button to win.
+          <br />
+          The delay between hover and moving will increase as the game
+          progresses.
+          <br />
+          The more times you lose, the more that delay increases (i.e. losing
+          once will double the time, losing twice will triple the time).
         </>
       )}
 
