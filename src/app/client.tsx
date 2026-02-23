@@ -40,9 +40,9 @@ export function ClickMe() {
 
   useEffect(() => {
     const onListener = () => {
-      console.log('tap detected')
+      console.log("tap detected");
       setIsTap(true);
-    }
+    };
     const offListener = () => setTimeout(setIsTap, 100, false);
 
     document.addEventListener("touchstart", onListener);
@@ -51,7 +51,7 @@ export function ClickMe() {
     return () => {
       document.removeEventListener("touchstart", onListener);
       document.removeEventListener("touchend", offListener);
-    }
+    };
   }, []);
 
   useEffect(() => {
@@ -184,14 +184,18 @@ export function ClickMe() {
           if (window.devicePixelRatio > 2) {
             clearInterval(interval!);
 
-            (document.querySelector("#end p") as HTMLParagraphElement).innerText =
+            (
+              document.querySelector("#end p") as HTMLParagraphElement
+            ).innerText =
               "zooming is used by cheaters. cheaters will not be tolerated. (is this an error? ping me.)";
 
             reset();
             document.body.classList.add("gameCompleted");
-            (document.querySelector("audio#shutdown") as HTMLAudioElement).play();
+            (
+              document.querySelector("audio#shutdown") as HTMLAudioElement
+            ).play();
           }
-        }, 500)
+        }, 500);
       }
 
       reposition();
@@ -238,15 +242,17 @@ export function ClickMe() {
     if (!isActive || clickRate.length < 1) return;
 
     const avgClickRate =
-      clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000
+      clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000;
 
-    if (isTap) {
+    if (isTap)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "touch screens are used by cheaters. cheaters will not be tolerated";
-    } else if (avgClickRate < 0.125) {
+    else if (window.devicePixelRatio > 1)
+      (document.querySelector("#end p") as HTMLParagraphElement).innerText =
+        "zooming is used by cheaters. cheaters will not be tolerated. (is this an error? ping me.)";
+    else if (avgClickRate < 0.125)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "cheaters will not be tolerated";
-    }
 
     reset();
     document.body.classList.add("gameCompleted");
