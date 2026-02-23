@@ -195,7 +195,7 @@ export function ClickMe() {
         let interval: NodeJS.Timeout | null = null;
         interval = setInterval(() => {
           const rects = current.getBoundingClientRect();
-          if (rects.x > document.body.clientWidth || rects.y > document.body.clientHeight) reposition();
+          if (rects.x > document.body.clientWidth || rects.y > document.body.clientHeight) reposition(true);
 
           if (window.devicePixelRatio > 1 && document.body.clientWidth > 600) {
             console.log('[Antichat.zoom] Zoom was detected while mobile breakpoints not hit, next click may be flagged')
