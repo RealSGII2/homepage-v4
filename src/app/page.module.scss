@@ -9,8 +9,38 @@
 
   margin: 0 auto;
 
+  transition: 350ms ease-out;
+  transition-property: transform, background-color;
+
   header {
     position: relative;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -200px -600px;
+    z-index: -1;
+
+    transition: 350ms ease-out;
+    transition-property: transform, background-color;
+  }
+
+  :has(.clickMe.active) & {
+    padding-bottom: 92px;
+  }
+
+  :global(.gameCompleted) & {
+    transform: scale(0);
+
+    &::after {
+      background-color: white;
+    }
+
+    * {
+      transition: opacity 350ms;
+      opacity: 0;
+    }
   }
 }
 
@@ -33,8 +63,14 @@
   padding: 0.2em 0.4em;
   transform: translateY(-4px);
 
-  background-color: rgb(32, 34, 40);
+  background-color: #181c20;
+  border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 8px;
+}
+
+.muted {
+  font-size: 12px;
+  color: rgba(white, 0.8);
 }
 
 .staticName {
@@ -43,6 +79,90 @@
 
   font-size: 20px;
   color: rgba(white, 0.64);
+}
+
+.interestExpand {
+  position: relative;
+
+  summary {
+    width: fit-content;
+    margin: 16px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 36px;
+    min-width: 186px;
+    padding: 0 24px;
+    border-radius: 99px;
+
+    border: solid 1px rgba(255, 255, 255, 0.3);
+
+    cursor: pointer;
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+
+      height: 1px;
+      width: calc((100% - 186px) / 2 - 48px);
+
+      background-color: rgba(255, 255, 255, 0.3);
+
+      display: none;
+    }
+
+    &::before {
+      left: 48px;
+    }
+
+    &::after {
+      right: 48px;
+    }
+
+    &:hover {
+      background-color: rgba(white, 0.05);
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      content: '';
+    }
+  }
+
+  summary span {
+    display: none;
+  }
+
+  &:open {
+    padding-bottom: 48px;
+    padding-top: 8px;
+
+    summary {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &:open summary .opened {
+    display: inline;
+  }
+
+  &:not(:open) summary .closed {
+    display: inline;
+  }
+
+  //&:open summary {
+  //  &::before, &::after {
+  //    display: block;
+  //  }
+  //}
 }
 
 .tabRow {
@@ -152,8 +272,15 @@
         padding: 0.3em 0.6em;
         transform: translate(-0.2em, -0.2em);
 
+        backdrop-filter: blur(8px);
         background-color: rgba(24, 28, 32, 0.64);
         border-radius: 4px;
+      }
+
+      .muted {
+        position: absolute;
+        bottom: 4px;
+        left: 8px;
       }
     }
 
@@ -341,6 +468,50 @@
   }
 }
 
+.thoughtBubble {
+  position: absolute;
+  left: 148px;
+  top: calc((128px - 48px) / 1.5);
+
+  padding: 10px 12px;
+  width: fit-content;
+  max-width: 400px;
+
+  background-color: #181c20;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 8px;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+
+    background-color: #181c20;
+    border: 1px solid rgba(255, 255, 255, .2);
+  }
+
+  &::before {
+    top: -20px;
+    left: 0px;
+
+    border-radius: 50%;
+
+    aspect-ratio: 1;
+    width: 10px;
+  }
+
+  &::after {
+    border-top-left-radius: 99px;
+    border-top-right-radius: 99px;
+    border-bottom: none;
+
+    aspect-ratio: 2;
+    height: 10px;
+
+    top: -11px;
+    left: 12px;
+  }
+}
+
 .header {
   height: 56px;
   display: none;
@@ -399,7 +570,158 @@ body.mobileMenuOpen .mainContent {
   display: none;
 }
 
+.clickMe {
+  padding: 0;
+
+  color: currentColor;
+  font: inherit;
+
+  background-color: transparent;
+  border: solid 1px transparent;
+  border-bottom: solid 1px rgba(white, 0.3);
+
+  cursor: pointer;
+
+  &.active {
+    position: fixed;
+    top: var(--y);
+    left: var(--x);
+    z-index: 100000;
+
+    color: white;
+    //border-color: #e71825;
+    border-color: transparent;
+    border-radius: 8px;
+
+    background-color: #e71825;
+    padding: 6px 10px;
+
+    animation: clickMe 1000ms infinite linear, clickMeButtonBg 1000ms ease infinite;
+    transition: 135ms ease;
+  }
+}
+
+.endClickMe {
+  padding: 0;
+
+  color: #7db1fe;
+  font: inherit;
+
+  background-color: transparent;
+  border: none;
+  border-bottom: solid 1px rgba(#7db1fe, 0.5);
+
+  cursor: pointer;
+
+  &:hover {
+    border-color: #7db1fe;
+  }
+}
+
+body:has(.clickMe.active) {
+  .connectionGrid, .interestExpand, .tabRow, .itemGrid, .avatar {
+    position: relative;
+    user-select: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 100;
+    }
+  }
+
+  :global(#flash) {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background-color: #87141b;
+    animation: clickMeBg 2000ms ease infinite;
+  }
+
+  * {
+    user-select: none;
+  }
+
+  :global(#gameControls) {
+    display: block !important;
+
+    svg {
+      animation: clickMeCursorProgress 90s ease-out forwards;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    background-color: #e71825;
+    animation: clickMeProgress 90s linear forwards;
+  }
+}
+
+@keyframes clickMe {
+  from {
+    box-shadow: 0 0 0 0 rgba(#e71825, 0.8);
+  }
+
+  to {
+    box-shadow: 0 0 0 5px rgba(#e71825, 0);
+  }
+}
+
+@keyframes clickMeButtonBg {
+  50% {
+    background-color: rgba(#e71825, 1);
+  }
+
+  from, to {
+    background-color: rgba(#e71825, 0.8);
+  }
+}
+
+@keyframes clickMeBg {
+  50% {
+    background-color: rgba(#87141b, 0.6);
+  }
+
+  from, to {
+    background-color: rgba(#87141b, 0.2);
+  }
+}
+
+@keyframes clickMeProgress {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+  }
+}
+
+@keyframes clickMeCursorProgress {
+  from {
+    left: calc(100% - 8px);
+  }
+
+  to {
+    left: 48px;
+  }
+}
+
 @media screen and (max-width: 600px) {
+  .clickMe {
+    display: none;
+  }
+
   .page {
     padding: 24px 24px 60px;
   }

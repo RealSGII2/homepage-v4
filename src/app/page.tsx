@@ -1,6 +1,5 @@
 import styles from "./page.module.scss";
 import Image from "next/image";
-import Link from "next/link";
 import servers from "./servers.json";
 
 export default async function Home({
@@ -14,54 +13,26 @@ export default async function Home({
   return (
     <>
       <main className={styles.main}>
-        <div className={styles.notice}>
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M13.9223 2C14.5065 2 14.9965 2.20259 15.3922 2.60777C15.7974 3.01296 16 3.50294 16 4.07774C16 4.65253 15.7974 5.14252 15.3922 5.5477C14.987 5.95289 14.4971 6.15548 13.9223 6.15548C13.3569 6.15548 12.8716 5.95289 12.4664 5.5477C12.0612 5.14252 11.8587 4.65253 11.8587 4.07774C11.8587 3.50294 12.0565 3.01296 12.4523 2.60777C12.8575 2.20259 13.3475 2 13.9223 2ZM14.7986 8.50177L11.9011 18.5512C11.7409 19.126 11.6608 19.5029 11.6608 19.682C11.6608 19.7856 11.7032 19.8846 11.788 19.9788C11.8728 20.0636 11.9623 20.106 12.0565 20.106C12.2167 20.106 12.3769 20.0353 12.5371 19.894C12.9611 19.5453 13.47 18.914 14.0636 18L14.5442 18.2827C13.1213 20.7609 11.609 22 10.0071 22C9.39458 22 8.90459 21.8304 8.5371 21.4912C8.17903 21.1425 8 20.7044 8 20.1767C8 19.828 8.08009 19.3852 8.24028 18.8481L10.2049 12.0919C10.3934 11.4417 10.4876 10.9517 10.4876 10.6219C10.4876 10.4146 10.3981 10.2309 10.2191 10.0707C10.04 9.91048 9.79505 9.83039 9.4841 9.83039C9.34276 9.83039 9.17314 9.8351 8.97527 9.84452L9.15901 9.27915L13.9505 8.50177H14.7986Z"
-              fill="#4C93FC"
-            />
-          </svg>
+        {!!server && (
+          <div className={styles.notice}>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M13.9223 2C14.5065 2 14.9965 2.20259 15.3922 2.60777C15.7974 3.01296 16 3.50294 16 4.07774C16 4.65253 15.7974 5.14252 15.3922 5.5477C14.987 5.95289 14.4971 6.15548 13.9223 6.15548C13.3569 6.15548 12.8716 5.95289 12.4664 5.5477C12.0612 5.14252 11.8587 4.65253 11.8587 4.07774C11.8587 3.50294 12.0565 3.01296 12.4523 2.60777C12.8575 2.20259 13.3475 2 13.9223 2ZM14.7986 8.50177L11.9011 18.5512C11.7409 19.126 11.6608 19.5029 11.6608 19.682C11.6608 19.7856 11.7032 19.8846 11.788 19.9788C11.8728 20.0636 11.9623 20.106 12.0565 20.106C12.2167 20.106 12.3769 20.0353 12.5371 19.894C12.9611 19.5453 13.47 18.914 14.0636 18L14.5442 18.2827C13.1213 20.7609 11.609 22 10.0071 22C9.39458 22 8.90459 21.8304 8.5371 21.4912C8.17903 21.1425 8 20.7044 8 20.1767C8 19.828 8.08009 19.3852 8.24028 18.8481L10.2049 12.0919C10.3934 11.4417 10.4876 10.9517 10.4876 10.6219C10.4876 10.4146 10.3981 10.2309 10.2191 10.0707C10.04 9.91048 9.79505 9.83039 9.4841 9.83039C9.34276 9.83039 9.17314 9.8351 8.97527 9.84452L9.15901 9.27915L13.9505 8.50177H14.7986Z"
+                fill="#4C93FC"
+              />
+            </svg>
 
-          <div>
             <p>
-              I&apos;ve officially swapped careers to be a truck driver.{" "}
-              <Link href={"/trucks"} style={{ float: "right" }}>
-                Read my story{" "}
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5 12H19M19 12L14 7M19 12L14 17"
-                    stroke="var(--primary-fg)"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </Link>
+              This page showcases specific information for <b>{server.name}</b>.
             </p>
-
-            {!!server && (
-              <>
-                <div />
-
-                <p>
-                  This page showcases specific information for{" "}
-                  <b>{server.name}</b>.
-                </p>
-              </>
-            )}
           </div>
-        </div>
+        )}
 
         <p>
           {server?.body ?? "Future truck driver and hobbyist web developer."}
@@ -71,6 +42,7 @@ export default async function Home({
         <div className={styles.itemGrid}>
           <div className={styles.large}>
             <p>Semi trucks</p>
+            <p className={styles.muted}>Favourite: 2016 Volvo VNL</p>
 
             <Image
               fill
@@ -78,6 +50,26 @@ export default async function Home({
               alt="An orange truck on a parking lot"
               className={styles.bgImage}
             />
+          </div>
+          <div>
+            <Image
+              width={56}
+              height={56}
+              src="/interests/droideka.png"
+              alt="A miniature tripod model from the 2005 War of the Worlds movie"
+              className={styles.thumbnail}
+            />
+            <Image
+              width={256}
+              height={256}
+              src="/interests/droideka.png"
+              alt="A miniature tripod model from the 2005 War of the Worlds movie"
+              className={styles.bgImage}
+            />
+            <div>
+              <p>Separatist droids</p>
+              <p className={styles.muted}>Favourite: Droidekas</p>
+            </div>
           </div>
           <div>
             <Image
@@ -111,27 +103,14 @@ export default async function Home({
               alt="A miniature tripod model from the 2005 War of the Worlds movie"
               className={styles.bgImage}
             />
-            <p>Tanks</p>
-          </div>
-          <div className={styles.superblur}>
-            <Image
-              width={56}
-              height={56}
-              src="/interests/maths.png"
-              alt="A miniature tripod model from the 2005 War of the Worlds movie"
-              className={styles.thumbnail}
-            />{" "}
-            <Image
-              width={256}
-              height={256}
-              src="/interests/maths.png"
-              alt="A miniature tripod model from the 2005 War of the Worlds movie"
-              className={styles.bgImage}
-            />
-            <p>Mathematics</p>
+            <div>
+              <p>Tanks</p>
+              <p className={styles.muted}>Particularly Soviet vehicles</p>
+            </div>
           </div>
           <div className={styles.large2}>
             <p>Web development</p>
+            <p className={styles.muted}>Pictured: &quot;CitizenBand&quot;</p>
 
             <Image
               fill
@@ -158,6 +137,34 @@ export default async function Home({
             <p>Linguistics</p>
           </div>
         </div>
+
+        <details className={styles.interestExpand}>
+          <summary><span className={styles.closed}>More interests</span><span className={styles.opened}>Collapse</span></summary>
+
+          <div className={styles.itemGrid}>
+            <div>
+              <Image
+                width={56}
+                height={56}
+                src="/interests/stridsmaskin90.webp"
+                alt="A miniature tripod model from the 2005 War of the Worlds movie"
+                className={styles.thumbnail}
+              />{" "}
+              <Image
+                width={256}
+                height={256}
+                src="/interests/stridsmaskin90.webp"
+                alt="A miniature tripod model from the 2005 War of the Worlds movie"
+                className={styles.bgImage}
+              />
+              <div>
+                <p>Destroyer/war robots</p>
+                <p className={styles.muted}>Pictured: Generation Zero Stridsmaskin-90</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
         <h2>Socials</h2>
         <div className={styles.connectionGrid}>
           <a
