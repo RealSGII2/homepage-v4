@@ -181,7 +181,7 @@ export function ClickMe() {
 
         let interval: NodeJS.Timeout | null = null;
         interval = setInterval(() => {
-          if (window.devicePixelRatio > 2) {
+          if (window.devicePixelRatio > 2 && document.body.clientWidth > 600) {
             clearInterval(interval!);
 
             (
@@ -247,7 +247,7 @@ export function ClickMe() {
     if (isTap)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "touch screens are used by cheaters. cheaters will not be tolerated";
-    else if (window.devicePixelRatio > 1)
+    else if (window.devicePixelRatio > 1 && document.body.clientWidth > 600)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "zooming is used by cheaters. cheaters will not be tolerated. (is this an error? ping me.)";
     else if (avgClickRate < 0.125)
