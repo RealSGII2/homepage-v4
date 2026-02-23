@@ -718,9 +718,9 @@ body:has(.clickMe.active) {
 }
 
 @media screen and (max-width: 600px) {
-  .clickMe {
-    display: none;
-  }
+  //.clickMe {
+  //  display: none;
+  //}
 
   .page {
     padding: 24px 24px 60px;

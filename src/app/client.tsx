@@ -36,6 +36,23 @@ export function ClickMe() {
   const [clickRate, setClickRate] = useState([] as number[]);
   const [lastClickTime, setLastClickTime] = useState(() => Date.now());
   const [startTime, setStartTime] = useState(0);
+  const [isTap, setIsTap] = useState(false);
+
+  useEffect(() => {
+    const onListener = () => {
+      console.log('tap detected')
+      setIsTap(true);
+    }
+    const offListener = () => setTimeout(setIsTap, 100, false);
+
+    document.addEventListener("touchstart", onListener);
+    document.addEventListener("touchend", offListener);
+
+    return () => {
+      document.removeEventListener("touchstart", onListener);
+      document.removeEventListener("touchend", offListener);
+    }
+  }, []);
 
   useEffect(() => {
     const current = ref.current;
@@ -123,17 +140,20 @@ export function ClickMe() {
     [ref],
   );
 
-  const reposition = useCallback((force = false) => {
-    const width = window.visualViewport?.width ?? 100;
-    const height = window.visualViewport?.height ?? 100;
+  const reposition = useCallback(
+    (force = false) => {
+      const width = window.visualViewport?.width ?? 100;
+      const height = window.visualViewport?.height ?? 100;
 
-    setTimeout(
-      setPosition,
-      !force ? Math.max(1, (Date.now() - startTime) / 2000) : 1,
-      random(0, width - 300),
-      random(92, height - 200),
-    );
-  }, [setPosition, startTime]);
+      setTimeout(
+        setPosition,
+        !force ? Math.max(1, (Date.now() - startTime) / 2000) : 1,
+        random(0, width - 300),
+        random(92, height - 200),
+      );
+    },
+    [setPosition, startTime],
+  );
 
   useEffect(() => {
     const current = ref.current;
@@ -206,7 +226,12 @@ export function ClickMe() {
     const avgClickRate =
       clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000;
 
-    if (avgClickRate < 0.125) {
+    console.log('isTap', isTap)
+
+    if (isTap) {
+      (document.querySelector("#end p") as HTMLParagraphElement).innerText =
+        "touch screens are used by cheaters. cheaters will not be tolerated";
+    } else if (avgClickRate < 0.125) {
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "cheaters will not be tolerated";
     }
@@ -214,7 +239,7 @@ export function ClickMe() {
     reset();
     document.body.classList.add("gameCompleted");
     (document.querySelector("audio#shutdown") as HTMLAudioElement).play();
-  }, [clickRate, isActive]);
+  }, [clickRate, isActive, isTap]);
 
   return (
     <>
@@ -235,7 +260,7 @@ export function ClickMe() {
       )}
 
       <button
-        onClick={() => (isActive ? onClick() : 0)}
+        onClick={() => (isActive ? requestAnimationFrame(onClick) : 0)}
         tabIndex={-1}
         className={`${styles.clickMe} ${isActive ? styles.active : ""}`.trim()}
         ref={ref}
