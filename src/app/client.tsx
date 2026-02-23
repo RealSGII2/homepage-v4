@@ -178,6 +178,20 @@ export function ClickMe() {
         setLastClickTime(Date.now());
         setStartTime(Date.now());
         reposition(true);
+
+        let interval: NodeJS.Timeout | null = null;
+        interval = setInterval(() => {
+          if (window.devicePixelRatio > 2) {
+            clearInterval(interval!);
+
+            (document.querySelector("#end p") as HTMLParagraphElement).innerText =
+              "zooming is used by cheaters. cheaters will not be tolerated. (is this an error? ping me.)";
+
+            reset();
+            document.body.classList.add("gameCompleted");
+            (document.querySelector("audio#shutdown") as HTMLAudioElement).play();
+          }
+        }, 500)
       }
 
       reposition();
@@ -224,9 +238,7 @@ export function ClickMe() {
     if (!isActive || clickRate.length < 1) return;
 
     const avgClickRate =
-      clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000;
-
-    console.log('isTap', isTap)
+      clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000
 
     if (isTap) {
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =

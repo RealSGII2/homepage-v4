@@ -591,13 +591,16 @@ body.mobileMenuOpen .mainContent {
     color: white;
     //border-color: #e71825;
     border-color: transparent;
-    border-radius: 8px;
+    border-radius: 0.5em;
 
     background-color: #e71825;
-    padding: 6px 10px;
+    padding: 0.375em 0.625em;
 
     animation: clickMe 1000ms infinite linear, clickMeButtonBg 1000ms ease infinite;
     transition: 135ms ease;
+    transition-property: top, left, --x, --y;
+
+    font-size: 1.5vmin;
   }
 }
 
@@ -673,7 +676,7 @@ body:has(.clickMe.active) {
   }
 
   to {
-    box-shadow: 0 0 0 5px rgba(#e71825, 0);
+    box-shadow: 0 0 0 0.35em rgba(#e71825, 0);
   }
 }
 
