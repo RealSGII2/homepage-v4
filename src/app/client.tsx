@@ -196,38 +196,13 @@ export function ClickMe() {
         setStartTime(Date.now());
         reposition(true);
 
-        let interval: NodeJS.Timeout | null = null;
-        interval = setInterval(() => {
+        setInterval(() => {
           const rects = current.getBoundingClientRect();
           if (
             rects.x > document.body.clientWidth ||
             rects.y > document.body.clientHeight
           )
             reposition(true);
-
-          if (window.devicePixelRatio > 1 && document.body.clientWidth > 600) {
-            console.log(
-              "[Antichat.zoom] Zoom was detected while mobile breakpoints not hit, next click may be flagged",
-            );
-          }
-
-          if (window.devicePixelRatio > 2 && document.body.clientWidth > 600) {
-            console.log(
-              "[Antichat.zoom] Zoom autofire threshold hit, forcing anticheat ending",
-            );
-            clearInterval(interval!);
-
-            (
-              document.querySelector("#end p") as HTMLParagraphElement
-            ).innerText =
-              "zooming is used by cheaters. cheaters will not be tolerated. (is this an error? ping me.)";
-
-            reset();
-            document.body.classList.add("gameCompleted");
-            (
-              document.querySelector("audio#shutdown") as HTMLAudioElement
-            ).play();
-          }
         }, 500);
       }
 
@@ -296,15 +271,9 @@ export function ClickMe() {
     if (isTap)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "touch screens are used by cheaters. cheaters will not be tolerated";
-    else if (window.devicePixelRatio > 1 && document.body.clientWidth > 600)
-      (document.querySelector("#end p") as HTMLParagraphElement).innerText =
-        "zooming is used by cheaters. cheaters will not be tolerated. (is this an error? ping me.)";
     else if (avgClickRate < 0.125)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "cheaters will not be tolerated";
-    else if (madClickRate > 0.12375 && madClickRate < 0.12525)
-      (document.querySelector("#end p") as HTMLParagraphElement).innerText =
-        "cheaters will not be tolerated. (is this an error? ping me)";
     else
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "01101100 01101111 01100011 01100001 01110100 01101001 01101111 01101110 00101110 01101000 01110010 01100101 01100110 00100000 00111101 00100000 00110000 01100010 00110000 00110000 00110000 00110000 00110001 00110000 00110001 00110001 00110001 00110000 00110001 00110000 00110001 00110001 00110001 00110000";
@@ -314,7 +283,7 @@ export function ClickMe() {
     reset();
     document.body.classList.add("gameCompleted");
     (document.querySelector("audio#shutdown") as HTMLAudioElement).play();
-  }, [clickRate, isActive, isTap]);
+  }, [clickRate, isActive, isTap, reset]);
 
   return (
     <>
