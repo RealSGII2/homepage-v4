@@ -13,8 +13,14 @@
   gap: 8px;
   padding: 16px 16px 0;
 
-  &.last .error {
-    animation: blink 250ms linear 2;
+  :nth-child(6) {
+    margin-right: 20px;
+  }
+
+  &.last {
+    .error, .incorrect {
+      animation: blink 250ms linear 2;
+    }
   }
 
   .dot {
@@ -25,6 +31,21 @@
     &.error {
       background-color: transparent;
       border: solid 2px #1d251c;
+    }
+  }
+
+  .incorrect {
+    width: 12px;
+    height: 12px;
+    padding: 1px;
+
+    color: #749f65;
+    background-color: rgba(#1d251c, 0.8);
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
     }
   }
 
