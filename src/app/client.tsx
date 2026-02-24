@@ -40,7 +40,9 @@ export function ClickMe() {
 
   useEffect(() => {
     const onListener = () => {
-      console.log("[Anticheat.touchscreen] Tap detected, all clicks for next 100ms flagged");
+      console.log(
+        "[Anticheat.touchscreen] Tap detected, all clicks for next 100ms flagged",
+      );
       setIsTap(true);
     };
     const offListener = () => setTimeout(setIsTap, 100, false);
@@ -183,7 +185,9 @@ export function ClickMe() {
           setTimeout(() => {
             window.localStorage.setItem(
               "gameLossCount",
-              (+(window.localStorage.getItem("gameLossCount") ?? '0') + 1).toString(),
+              (
+                +(window.localStorage.getItem("gameLossCount") ?? "0") + 1
+              ).toString(),
             );
             window.location.reload();
           }, 90 * 1000),
@@ -195,14 +199,22 @@ export function ClickMe() {
         let interval: NodeJS.Timeout | null = null;
         interval = setInterval(() => {
           const rects = current.getBoundingClientRect();
-          if (rects.x > document.body.clientWidth || rects.y > document.body.clientHeight) reposition(true);
+          if (
+            rects.x > document.body.clientWidth ||
+            rects.y > document.body.clientHeight
+          )
+            reposition(true);
 
           if (window.devicePixelRatio > 1 && document.body.clientWidth > 600) {
-            console.log('[Antichat.zoom] Zoom was detected while mobile breakpoints not hit, next click may be flagged')
+            console.log(
+              "[Antichat.zoom] Zoom was detected while mobile breakpoints not hit, next click may be flagged",
+            );
           }
 
           if (window.devicePixelRatio > 2 && document.body.clientWidth > 600) {
-            console.log('[Antichat.zoom] Zoom autofire threshold hit, forcing anticheat ending')
+            console.log(
+              "[Antichat.zoom] Zoom autofire threshold hit, forcing anticheat ending",
+            );
             clearInterval(interval!);
 
             (
@@ -246,9 +258,18 @@ export function ClickMe() {
         setClickRate([...clickRate, Date.now() - lastClickTime].slice(-50));
         setLastClickTime(Date.now());
 
+        const avg =
+          clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000;
+
         console.log(
-          "[Anticheat.autoClicker] Average click rate to date: " +
-            clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000 +
+          "[Anticheat.autoClicker] Average click rate to date: " + avg + "s",
+        );
+
+        console.log(
+          "[Anticheat.autoClicker] MAD click rate to date: " +
+            clickRate.map((x) => Math.abs(x - avg)).reduce((a, b) => a + b, 0) /
+              clickRate.length /
+              1000 +
             "s",
         );
       }
@@ -261,8 +282,16 @@ export function ClickMe() {
   const onClick = useCallback(() => {
     if (!isActive || clickRate.length < 1) return;
 
+    document.body.classList.add("gameTriggered");
+
     const avgClickRate =
       clickRate.reduce((a, b) => a + b, 0) / clickRate.length / 1000;
+    const madClickRate =
+      clickRate
+        .map((x) => Math.abs(x - avgClickRate))
+        .reduce((a, b) => a + b, 0) /
+      clickRate.length /
+      1000;
 
     if (isTap)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
@@ -273,6 +302,12 @@ export function ClickMe() {
     else if (avgClickRate < 0.125)
       (document.querySelector("#end p") as HTMLParagraphElement).innerText =
         "cheaters will not be tolerated";
+    else if (madClickRate > 0.12375 && madClickRate < 0.12525)
+      (document.querySelector("#end p") as HTMLParagraphElement).innerText =
+        "cheaters will not be tolerated. (is this an error? ping me)";
+    else
+      (document.querySelector("#end p") as HTMLParagraphElement).innerText =
+        "01101100 01101111 01100011 01100001 01110100 01101001 01101111 01101110 00101110 01101000 01110010 01100101 01100110 00100000 00111101 00100000 00110000 01100010 00110000 00110000 00110000 00110000 00110001 00110000 00110001 00110001 00110001 00110000 00110001 00110000 00110001 00110001 00110001 00110000";
 
     window.localStorage.setItem("gameLossCount", "0");
 

@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div id="end">
-          <p>01100011 01101000 01100101 01100011 01101011 00100000 01100010 01100001 01100011 01101011 00100000 01101100 01100001 01110100 01100101 01110010</p>
+          <p>inspecting is cheating. cheaters will not be tolerated</p>
         </div>
         <div id="flash" />
         <div id="gameControls">

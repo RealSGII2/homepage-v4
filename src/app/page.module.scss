@@ -16,7 +16,7 @@
     position: relative;
   }
 
-  &::after {
+  :global(.gameTriggered) &::after {
     content: '';
     position: absolute;
     inset: -200px -600px;
