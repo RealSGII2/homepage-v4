@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg height="48"
      viewBox="0 0 35 10"
      xmlns="http://www.w3.org/2000/svg"
 >
-    <style>@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap");</style>
+    <style type="text/css">@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap");</style>
 
     <defs>
         <linearGradient id="falloff">
