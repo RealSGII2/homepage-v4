@@ -139,7 +139,10 @@ export default async function Home({
         </div>
 
         <details className={styles.interestExpand}>
-          <summary><span className={styles.closed}>More interests</span><span className={styles.opened}>Collapse</span></summary>
+          <summary>
+            <span className={styles.closed}>More interests</span>
+            <span className={styles.opened}>Collapse</span>
+          </summary>
 
           <div className={styles.itemGrid}>
             <div>
@@ -159,7 +162,9 @@ export default async function Home({
               />
               <div>
                 <p>Destroyer/war robots</p>
-                <p className={styles.muted}>Pictured: Generation Zero Stridsmaskin-90</p>
+                <p className={styles.muted}>
+                  Pictured: Generation Zero Stridsmaskin-90
+                </p>
               </div>
             </div>
           </div>
@@ -423,6 +428,35 @@ export default async function Home({
                 className=""
               ></path>
             </svg>
+          </a>
+        </div>
+
+        <h2>Friends</h2>
+        <div className={styles.friendsList}>
+          <a href="https://kiiyoko.dev" target="_blank" title="Kiiyoko">
+            <Image
+              width={88}
+              height={31}
+              src="https://www.kiiyoko.dev/button.png"
+              alt="Kiiyoko"
+              decoding="async"
+            />
+          </a>
+
+          <a
+            className={styles.addFriend}
+            href="https://share.realsgii2.dev/"
+            target="_blank"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+            >
+              <path fill="currentcolor" d="M7.75 2a.75.75 0 0 1 .75.75V7h4.25a.75.75 0 0 1 0 1.5H8.5v4.25a.75.75 0 0 1-1.5 0V8.5H2.75a.75.75 0 0 1 0-1.5H7V2.75A.75.75 0 0 1 7.75 2Z"></path>
+            </svg>
+            Add me
           </a>
         </div>
       </main>

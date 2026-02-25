@@ -71,15 +71,33 @@ export default function RootLayout({
         <div className={styles.page}>
           <header>
             <Image
-              src="https://cdn.discordapp.com/avatars/258706134850863106/a_b0b270afff8907f049856d8f3a3108c9.gif"
+              src="/share/avatar/anim/raw.webp"
               width={128}
               height={128}
               alt="RealSGII2's avatar"
               className={styles.avatar}
             />
-            <div className={styles.thoughtBubble}>i might like droidekas</div>
+            <div className={styles.thoughtBubble}>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                  d="M24 12.3926L18 22.7842H6L0 12.3926L6 2H18L24 12.3926ZM11.1553 15.8564L8.31055 20.7842H15.6367L12.8057 15.8564H11.1553ZM14.5576 14.8896L17.3955 19.8311L21.1133 13.3926H15.4229L14.5576 14.8896ZM6.57812 19.7832L9.42188 14.8555L8.57715 13.3926H2.8877L6.57812 19.7832ZM14.5771 9.92871L15.4229 11.3926H21.1133L17.4229 5L14.5771 9.92871ZM2.8877 11.3926H8.57715L9.41113 9.94629L6.57422 5.00684L2.8877 11.3926ZM11.1338 8.92871H12.8457L15.6904 4H8.30273L11.1338 8.92871Z"
+                  fill="#E71825"
+                />
+              </svg>
+              i might like droidekas
+            </div>
             <h1 className={styles.username}>
-              RealSGII2 <span className={styles.guild}>GOOG</span>
+              RealSGII2 <a href="https://discord.gg/trucksim" target="_blank" rel="noreferrer" className={styles.guild}>
+                <Image width={20} height={20} src="/discord/guildBadge.png" alt="Guild badge" /> HAUL
+              </a>
             </h1>
             <p className={styles.staticName}>@sgii2</p>
           </header>
@@ -88,6 +106,7 @@ export default function RootLayout({
 
           <div className={styles.tabRow}>
             <TabLink href={"/"}>About me</TabLink>
+            <TabLink href={"/games"}>Games</TabLink>
             <TabLink href={"/trucks"}>Truck interest</TabLink>
             <TabLink href={"/blog"}>Blog</TabLink>
           </div>

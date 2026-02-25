@@ -35,6 +35,11 @@ body {
   }
 }
 
+::selection {
+  background-color: #4c94fe;
+  color: black;
+}
+
 #end {
   position: absolute;
   inset: 0;

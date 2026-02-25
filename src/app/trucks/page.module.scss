@@ -74,6 +74,32 @@
   background-color: #323339;
   border-radius: 12px;
 
+  img {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 4px 4px rgba(black, 0.1);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .animated {
+    display: none;
+  }
+
+  &:hover {
+    .static {
+      display: none;
+    }
+
+    .animated {
+      display: block;
+    }
+  }
+
   > div {
     padding: 3px 16px;
 
@@ -100,6 +126,12 @@
             font-size: 14px;
             font-weight: 400;
             color: rgba(white, 0.64);
+            cursor: default;
+          }
+
+          span:hover {
+            cursor: pointer;
+            text-decoration: underline;
           }
         }
       }

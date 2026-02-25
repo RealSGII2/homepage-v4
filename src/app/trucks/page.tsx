@@ -73,15 +73,26 @@ export default function TrucksInfo() {
           <div className={styles.discordMessagePreview}>
             <div>
               <Image
-                src="https://cdn.discordapp.com/avatars/258706134850863106/9fe99a31dd186042e1f2cfe7c8009506.png"
+                src="/share/avatar/static/raw.webp"
                 width={42}
                 height={42}
                 alt="RealSGII2's avatar"
+                quality={100}
+                className={styles.static}
+              />
+
+              <Image
+                src="/share/avatar/anim/raw.webp"
+                width={42}
+                height={42}
+                alt="RealSGII2's avatar"
+                quality={100}
+                className={styles.animated}
               />
 
               <div>
                 <p>
-                  RealSGII2 <time>2025-01-12 05:47</time>
+                  <span>RealSGII2</span> <time>2025-01-12 05:47</time>
                 </p>
                 <p>
                   the 6 am autistic thought to ditch my career and become a
