@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import servers from './app/servers.json'
+import servers from './app/(homepage)/servers.json'
 
 export function middleware(request: NextRequest) {
   const serverId = request.nextUrl.pathname.slice(1) + request.nextUrl.search.slice(1, -1);

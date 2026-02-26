@@ -1,0 +1,148 @@
+.truckingPage {
+  a {
+    color: #4d94ff;
+  }
+
+  ul, ol {
+    list-style-position: inside;
+    padding: 0;
+  }
+
+  li {
+    margin-top: 4px;
+
+    &::marker {
+      color: rgba(white, 0.4);
+    }
+  }
+}
+
+.timeline, .infoBlock {
+  color: rgba(white, 0.8);
+}
+
+.timeline {
+  > div {
+    position: relative;
+    padding-left: 24px;
+
+    p {
+      margin-top: 0;
+    }
+
+    &:not(:last-child)::before {
+      content: '';
+      position: absolute;
+
+      top: 30px;
+      left: 5px;
+
+      width: 2px;
+      height: calc(100% - 20px);
+
+      background-color: rgba(white, 0.3);
+    }
+
+    h3 {
+      position: relative;
+      margin-bottom: 6px;
+
+      font-size: 18px;
+      color: white;
+
+      &::before {
+        content: '';
+        position: absolute;
+
+        top: 50%;
+        left: -24px;
+
+        transform: translateY(-50%);
+
+        width: 12px;
+        height: 12px;
+
+        background-color: #4d94ff;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+.discordMessagePreview {
+  padding: 15px 0;
+  background-color: #323339;
+  border-radius: 12px;
+
+  img {
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 4px 4px rgba(black, 0.1);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+
+  .animated {
+    display: none;
+  }
+
+  &:hover {
+    .static {
+      display: none;
+    }
+
+    .animated {
+      display: block;
+    }
+  }
+
+  > div {
+    padding: 3px 16px;
+
+    display: flex;
+    gap: 8px;
+
+    &:hover {
+      background-color: rgba(black, 0.1);
+    }
+
+    img {
+      border-radius: 99px;
+    }
+
+    &:first-child {
+      p {
+        margin: 0;
+
+        &:first-child {
+          color: white;
+          font-weight: 500;
+
+          time {
+            font-size: 14px;
+            font-weight: 400;
+            color: rgba(white, 0.64);
+            cursor: default;
+          }
+
+          span:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    &:not(:first-child) {
+      padding-left: 66px;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
