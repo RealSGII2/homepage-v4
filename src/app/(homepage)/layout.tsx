@@ -105,7 +105,7 @@ export default function RootLayout({
           <Header />
 
           <div className={styles.tabRow}>
-            <TabLink href={"/public"}>About me</TabLink>
+            <TabLink href={"/"}>About me</TabLink>
             <TabLink href={"/games"}>Games</TabLink>
             <TabLink href={"/trucks"}>Truck interest</TabLink>
             <TabLink href={"/blog"}>Blog</TabLink>
