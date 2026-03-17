@@ -1,0 +1,59 @@
+# Server End of Life
+
+<Date timestamp={1773771585340} />
+
+Not exactly a blog post, but still an important update.
+
+<Tldr>
+    My dedicated server is shutting down the 17th of May 2026, which will take the following offline:
+    - Dedicated game servers
+    - serve.realsgii2.dev
+</Tldr>
+
+Those of you who talk to me often know that I have a dedicated server in New
+York that I use for a majority of my custom hosted solutions.
+
+The server will be shut down on the **17th of May 2026**.
+
+The following services I provide will be taken offline due to this change:
+- Light file hosting provided by serve.realsgii2.dev (see next section)
+- Dedicated servers such as the American Truck Simulator convoy
+    - These will be replaced with smaller, VPS-based solutions that will be
+      taken offline when not in use.
+- Anything hooked on my internal Okta-like authentication service
+
+## Replacing serve.realsgii2.dev
+
+This was an instance of [Zipline](//zipline.diced.sh) used to host small files
+and images that I intended to distribute to other people or share between
+devices like my personal computer and this server. It was hosted on the server
+itself.
+
+Because I still need a similar service and have nowhere to host it, I will be
+merging all of its data with cdn.realsgii2.dev, a Backblaze instance.
+
+Since this move is to clear old projects, data, and to remove costs and free up
+space, cdn.realsgii2.dev will also be undergoing a major overhaul.
+
+I will build a lightweight UI to manage it and possibly allow users to browse
+files that I host as archives. The size of the CDN's content is around 8 GiB,
+mainly because it was my attempt of making a ShareX server back in 2020. Most
+of the data that is no longer in active use will be deleted. This will mainly
+affect screenshots and some videos sent around 2020-2022. Some data on older,
+non-maintained websites may also be affected. Projects that I know still use it
+(such as [PathOS](//pathos.realsgii2.dev)) will have its data retained.
+
+Sometime during Q3 or Q4 of this year, serve.realsgii2.dev will become the
+primary URL of the Backblaze instance, and cdn.realsgii2.dev will become one of
+its CNames.
+
+## Why this change?
+
+The dedicated server was an absolute steal. $60 per month for 32 GiB of RAM is
+absolutely amazing. However, I'm not putting those resources to good use. Over
+this Year to Date it has only been used for authentication and
+serve.realsgii2.dev. I would only ever have two game servers hosted at once on
+it. Keeping a conscientious spending mindset is ideal (esp. with my new cost of
+education) so I am eliminating a lot of unneeded costs. For example, I have
+already cancelled my paid plans with Vercel and Adobe. With just these three
+services alone, I would save a couple thousand dollars a year.

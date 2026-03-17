@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
+import createMDX from '@next/mdx'
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    remotePatterns: [new URL("https://www.kiiyoko.dev/button.png")]
-  }
+    remotePatterns: [new URL("https://www.kiiyoko.dev/button.png")],
+  },
 };
 
-export default nextConfig;
+const withMDX = createMDX({})
+export default withMDX(nextConfig)

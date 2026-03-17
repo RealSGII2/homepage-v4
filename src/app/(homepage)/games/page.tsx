@@ -15,7 +15,7 @@ export default function BlogHome() {
         flexDirection: "column",
       }}
     >
-      <span className='nocopy' />
+      <span className="nocopy" />
 
       <svg
         height="48"
@@ -37,7 +37,8 @@ export default function BlogHome() {
         />
       </svg>
 
-      <p>Nothing here yet!</p>
+      <p style={{ marginBottom: 0 }}>Nothing here yet!</p>
+      <p style={{ marginTop: 8, color: 'rgba(255, 255, 255, 0.6)' }}>Psst... you lost the game.</p>
     </div>
   );
 }

@@ -5,7 +5,7 @@
   max-width: 800px;
   min-height: 100vh;
 
-  padding: 48px 48px 68px;
+  padding: 48px 48px 100px;
 
   margin: 0 auto;
 
@@ -27,7 +27,7 @@
   }
 
   :has(.clickMe.active) & {
-    padding-bottom: 192px;
+    padding-bottom: 224ópx;
   }
 
   :global(.gameCompleted) & {
@@ -419,6 +419,34 @@
   }
 }
 
+.warningNotice {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+
+  padding: 16px;
+  margin: 24px 0 0;
+
+  border-radius: 12px;
+
+  background-color: rgba(#e71825, 0.2);
+
+  a {
+    display: inline-flex;
+
+    color: color-mix(in srgb, #e71825, white 20%);
+    text-decoration: none;
+
+    padding: 4px 16px;
+    border-radius: 99px;
+
+    &:hover {
+      background-color: rgba(white, 0.05);
+    }
+  }
+}
+
 .notice {
   display: flex;
   align-items: center;
@@ -470,6 +498,11 @@
   }
 }
 
+.lockup {
+  display: block;
+  margin-bottom: 8px;
+}
+
 .copyright {
   position: absolute;
   bottom: 0;
@@ -477,6 +510,10 @@
 
   :has(:global(.nocopy)) & {
     display: none;
+  }
+
+  .bullet {
+    color: rgba(white, 0.32);
   }
 }
 
