@@ -108,7 +108,7 @@ export default function RootLayout({
                   src="/discord/guildBadge.png"
                   alt="Guild badge"
                 />{" "}
-                HAUL
+                CLKR
               </a>
             </h1>
             <p className={styles.staticName}>@sgii2</p>
