@@ -97,7 +97,7 @@ export default function RootLayout({
             <h1 className={styles.username}>
               RealSGII2{" "}
               <a
-                href="https://discord.gg/trucksim"
+                // href="https://discord.gg/trucksim"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.guild}

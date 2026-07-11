@@ -16,6 +16,8 @@
 
   border-radius: 99px;
 
+  user-select: none;
+
   &:hover {
     background-color: rgba(white, 0.1);
   }
@@ -39,6 +41,12 @@
 
   h1:has(+ &) {
     margin-bottom: 0;
+  }
+
+  span.dot {
+    margin: 0 4px;
+    color: rgba(white, 0.3);
+    font-weight: 900;
   }
 }
 
@@ -77,6 +85,10 @@
     ul {
       padding-left: 24px;
     }
+  }
+
+  hr {
+    color: #ffffff4d;
   }
 }
 

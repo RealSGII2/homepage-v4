@@ -210,6 +210,8 @@
     text-decoration: none;
     transition: color 135ms ease;
 
+    user-select: none;
+
     &::after {
       content: '';
       position: absolute;
@@ -507,6 +509,7 @@
   position: absolute;
   bottom: 0;
   color: rgba(white, 0.64);
+  user-select: none;
 
   :has(:global(.nocopy)) & {
     display: none;
@@ -860,6 +863,7 @@ body:has(.clickMe.active) {
 
     a {
       justify-content: flex-start;
+      user-select: none;
 
       &::after {
         border-radius: 0 4px 4px 0;
