@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/app/(homepage)/2990/page.module.scss";
+import styles from "@/app/(homepage)/(easteregg)/2990/page.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { redirect } from "next/navigation";
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import styles from "./page.module.scss";
-import Password from "@/app/(homepage)/2990/client";
+import Password from "@/app/(homepage)/(easteregg)/2990/client";
 
 export const metadata: Metadata = {
   title: "2990",

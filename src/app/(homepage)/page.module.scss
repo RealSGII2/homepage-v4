@@ -45,7 +45,8 @@
 }
 
 .avatar {
-  border-radius: 8px;
+  //border-radius: 8px;
+  border-radius: 100px;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1), 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -77,9 +78,9 @@
     image-rendering: pixelated;
   }
 
-  &:hover {
-    border-color: rgba(white, 0.5);
-  }
+  //&:hover {
+  //  border-color: rgba(white, 0.5);
+  //}
 }
 
 .muted {
@@ -497,6 +498,61 @@
     &:hover {
       background-color: rgba(white, 0.075);
     }
+  }
+}
+
+.legoHud {
+  display: flex;
+  flex-direction: column;
+  //gap: 8px;
+
+  position: absolute;
+  left: 148px;
+  top: calc((128px - 72px) / 2);
+
+  width: fit-content;
+
+  * {
+    user-select: none;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+
+    &:first-child {
+      gap: 8px;
+    }
+
+    &:last-child span {
+      margin: 0;
+      display: inline-block;
+      height: 32px;
+    }
+  }
+
+  span {
+    font-size: 24px;
+    font-weight: 900;
+    color: #e1ac02;
+    text-shadow: 0 2px 3px black;
+  }
+
+  .lastHeart {
+    animation: lastHeart ease-out 800ms infinite;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+  }
+}
+
+@keyframes lastHeart {
+  from {
+    transform: scale(1.1);
+  }
+
+  to {
+    transform: scale(1);
   }
 }
 

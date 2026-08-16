@@ -38,7 +38,7 @@ export default function BlogHome() {
       </svg>
 
       <p style={{ marginBottom: 0 }}>Nothing here yet!</p>
-      <p style={{ marginTop: 8, color: 'rgba(255, 255, 255, 0.6)' }}>Psst... you lost the game.</p>
+      <p style={{ marginTop: 8, color: 'rgba(255, 255, 255, 0.6)' }}>You got games on your phone?</p>
     </div>
   );
 }
