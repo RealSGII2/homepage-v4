@@ -75,10 +75,7 @@ export default function RootLayout({
                 </div>
                 <div>
                     <Image width={32} height={32} src='/fun/heart.webp' alt='LEGO heart icon'></Image> <Image
-                    width={32}
-                    height={32}
-                    src='/fun/heart.webp'
-                    alt='LEGO heart icon'
+                    width={32} height={32} src='/fun/heart.webp' alt='LEGO heart icon'
                 ></Image> <Image width={32} height={32} src='/fun/heart.webp' alt='LEGO heart icon'></Image>
                     <span className={styles.lastHeart}>
                         <Image width={32} height={32} src='/fun/heart.webp' alt='LEGO heart icon'></Image></span>
@@ -86,7 +83,7 @@ export default function RootLayout({
             </div>
             <h1 className={styles.username}>
                 RealSGII2{' '}
-                <a /* href="https://discord.gg/trucksim" target="_blank" */ rel="noreferrer" className={styles.guild}
+                <a /* href="https://discord.gg/trucksim" target="_blank" */ rel='noreferrer' className={styles.guild}
                 >
                     <Image
                         width={20} height={20} src='/discord/guildBadge.png' alt='Guild badge'
@@ -100,7 +97,7 @@ export default function RootLayout({
 
         <div className={styles.tabRow}>
             <TabLink href={'/'}>About me</TabLink> <TabLink href={'/games'}>Games</TabLink>
-            <TabLink href={'/blog'}>Blog</TabLink>
+            <TabLink href={'/blog'}>Blog</TabLink> <TabLink href={'/truck'}>The Countdown</TabLink>
         </div>
 
         <div className={styles.mainContent}>{children}</div>

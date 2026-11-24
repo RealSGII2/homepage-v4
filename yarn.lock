@@ -3030,6 +3030,11 @@ react-is@^16.13.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-timer-hook@^4.0.9:
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/react-timer-hook/-/react-timer-hook-4.0.9.tgz#2b2ab2aacf96e9e39cd3f60e22c081463748569d"
+  integrity sha512-8k/X9pQ3XzuCdCBvPUCpBwOJFP2U5yW9NWjJJGi80mMKyK0IQYfeAKVrGibmSQB88N4qj14t9ABm1Rph5+EZjQ==
+
 react@19.1.0:
   version "19.1.0"
   resolved "https://registry.yarnpkg.com/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
