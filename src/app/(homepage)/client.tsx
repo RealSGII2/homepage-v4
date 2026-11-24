@@ -180,6 +180,7 @@ export function ClickMe() {
         setPosition(rect.left, rect.top);
         setActive(true);
         requestAnimationFrame(reposition as () => void);
+        audioRef.current!.volume = 0.5;
         audioRef.current?.play();
         setResetTimeout(
           setTimeout(() => {
