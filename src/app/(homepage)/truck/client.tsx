@@ -10,7 +10,7 @@ function formatTimer({ days, hours, minutes, seconds, milliseconds }: useTimerRe
 }
 
 export default function TruckClient() {
-    const noticeTimer = useTimer({ expiryTimestamp: new Date(1796220000000), interval: 500 });
+    const noticeTimer = useTimer({ expiryTimestamp: new Date(1796220000000 - (24 * 60 * 60 * 1000)), interval: 500 });
     const quitTimer = useTimer({ expiryTimestamp: new Date(1799330400000), interval: 500 });
     const schoolTimer = useTimer({ expiryTimestamp: new Date(1800367200000), interval: 500 });
 

@@ -1,0 +1,65 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    border-radius: 99px;
+    border: none;
+
+    background-color: transparent;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    &.variant\.filled {
+        background-color: var(--colour);
+        color: contrast-color(var(--colour));
+
+        &:not(.static):hover {
+            background-color: color-mix(in srgb, var(--colour), contrast-color(var(--colour)) 7%);
+        }
+    }
+
+    &.variant\.ghost {
+        color: var(--colour);
+        background-color: color-mix(in srgb, currentColor 10%, transparent);
+
+        &:not(.static):hover {
+            background-color: color-mix(in srgb, currentColor 15%, transparent);
+        }
+    }
+
+    &.variant\.outlined, &.variant\.text {
+        color: var(--colour);
+
+        &:not(.static):hover {
+            background-color: color-mix(in srgb, currentColor 5%, transparent);
+        }
+    }
+
+    &.variant\.outlined {
+        border: solid 1px color-mix(in srgb, currentColor 30%, transparent);
+    }
+
+    &.size\.small {
+        height: 32px;
+        padding: 0 12px;
+    }
+
+    &.size\.default {
+        height: 36px;
+        padding: 0 16px;
+    }
+
+    &:not(.static):focus {
+        outline: solid 2px color-mix(in srgb, var(--colour) 30%, transparent);
+        outline-offset: 2px;
+    }
+}

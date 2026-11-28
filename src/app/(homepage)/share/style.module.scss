@@ -1,0 +1,82 @@
+.snippet {
+    .area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 36px;
+
+        background-color: #181c20;
+        background: repeating-conic-gradient(
+                        color-mix(in srgb, #181c20, white 2%) 0 25%,
+                        #181c20 0 50%
+        ) 50% / 20px 20px;
+
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+
+    code {
+        display: block;
+        background-color: #181c20;
+        padding: 16px;
+
+        pre {
+            font-family: monospace;
+            margin: 0 12px 0 0;
+
+            :global(.element) {
+                color: #7db1fe;
+            }
+
+            :global(.key) {
+                color: #ffe199;
+            }
+
+            :global(.value) {
+                color: #72e1c4;
+            }
+        }
+    }
+
+    footer {
+        display: block;
+        background-color: #181c20;
+        padding: 0 16px 16px;
+
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            height: 36px;
+            padding: 0 16px;
+            background-color: transparent;
+            border: solid 1px color-mix(in srgb, currentcolor 30%, transparent);
+            border-radius: 999px;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+
+            cursor: pointer;
+
+            svg {
+                width: 14px;
+                height: 14px;
+                fill: currentcolor;
+                opacity: 0.6;
+            }
+
+            &[data-success] {
+                color: #72e1c4;
+            }
+
+            &:hover {
+                background-color: color-mix(in srgb, currentColor 5%, transparent);
+            }
+        }
+    }
+}

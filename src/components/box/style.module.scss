@@ -1,0 +1,79 @@
+.box {
+    border-radius: 6px;
+    background-color: #181c20;
+    border: none;
+
+    &.canStack:has(+ &.canStack) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        margin-bottom: 0 !important;
+    }
+
+    &.canStack + &.canStack {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: 0 !important;
+    }
+
+    //noinspection CssReplaceWithShorthandSafely
+    &.variant\.preview {
+        background: repeating-conic-gradient(
+                        color-mix(in srgb, #181c20, white 2%) 0 25%,
+                        #181c20 0 50%
+        ) 50% / 20px 20px;
+        background-position: top;
+    }
+
+    &.variant\.actionRow {
+        padding-top: 0 !important;
+        display: flex;
+        gap: 8px;
+    }
+
+    &.variant\.outlined {
+        background-color: transparent;
+        border: solid 1px rgba(white, 0.3);
+    }
+
+    &.variant\.button\.default {
+        color: white;
+
+        &:hover {
+            background-color: color-mix(in srgb, #181c20, white 5%);
+        }
+    }
+
+    &.variant\.button\.blue {
+        background-color: color-mix(in srgb, #181c20, #4d94ff 25%);
+        color: white;
+
+        &:hover {
+            background-color: color-mix(in srgb, #181c20, #4d94ff 30%);
+        }
+    }
+
+    &.button {
+        width: 100%;
+        cursor: pointer;
+
+        &:focus {
+            position: relative;
+            outline: solid 2px color-mix(in srgb, transparent, #4d94ff 30%);
+            outline-offset: 2px;
+            z-index: 2;
+        }
+
+        &.canStack + &.canStack.button {
+            border-top: solid 1px #303437;
+        }
+    }
+}
+
+.buttonBoxRow {
+    display: flex;
+    align-items: center;
+
+    p {
+        margin: 0;
+    }
+}

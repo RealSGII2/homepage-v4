@@ -1,0 +1,54 @@
+.emptyControls {
+    margin: 0;
+    color: rgba(white, 0.6);
+    font-style: italic;
+}
+
+.componentTitle {
+    margin-bottom: 4px;
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+:global(code) {
+    font-family: var(--font-geist-mono), monospace;
+    font-size: 14px;
+}
+
+:global(.el) {
+    color: #7db1fe;
+}
+
+.param {
+    :first-child {
+        color: #7db1fe;
+    }
+
+    &.type\.string :last-child {
+        color: #72e1c4;
+
+        &::before, &::after {
+            content: '"';
+        }
+    }
+
+    &.number :last-child {
+        color: #ffe199;
+    }
+
+    &.type\.boolean :last-child {
+        color: #ffe199;
+    }
+}
+
+.spacer {
+    flex: 1;
+}

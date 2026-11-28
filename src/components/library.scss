@@ -1,0 +1,17 @@
+@property --colour {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: white;
+}
+
+details [data-if="open"] {
+    display: none;
+}
+
+details:open [data-if="open"] {
+    display: unset;
+}
+
+details:open [data-if="closed"] {
+    display: none;
+}
