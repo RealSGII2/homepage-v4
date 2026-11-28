@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import type { ButtonHTMLAttributes, DetailedHTMLProps, HTMLAttributes } from "react";
 import styles from "./style.module.scss";
 import cx from "@/utils/cx";
 import resolveColour from "@/utils/resolveColur";
@@ -8,6 +8,12 @@ export type ButtonProps = {
     colour?: "blue.bg" | "blue.fg" | "green.bg" | "green.fg" | "red.bg" | "red.fg" | "inherit" | string;
     size?: "small" | "default";
 } & DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>;
+
+export type StaticButtonProps = {
+    variant: "filled" | "outlined" | "ghost" | "text";
+    colour?: "blue.bg" | "blue.fg" | "green.bg" | "green.fg" | "red.bg" | "red.fg" | "inherit" | string;
+    size?: "small" | "default";
+} & DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 
 export default function Button({ variant, colour = "inherit", size = "default", style, ...rest }: ButtonProps) {
     return (
@@ -19,7 +25,7 @@ export default function Button({ variant, colour = "inherit", size = "default", 
     );
 }
 
-export function StaticButton({ variant, colour = "inherit", size = "default", style, ...rest }: ButtonProps) {
+export function StaticButton({ variant, colour = "inherit", size = "default", style, ...rest }: StaticButtonProps) {
     return (
         <div
             className={cx(styles, "button", "static", "variant." + variant, "size." + size)}
