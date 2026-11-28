@@ -7,6 +7,5 @@ export type ThemeProps = {
 }
 
 export default function Theme({ colour, children }: ThemeProps) {
-    // @ts-expect-error Component specific variable
     return <div style={{ '--colour': resolveColour(colour) }}>{children}</div>
 }
