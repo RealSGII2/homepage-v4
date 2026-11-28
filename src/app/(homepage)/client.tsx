@@ -351,7 +351,7 @@ export function Header() {
 }
 
 export function InteractableAvatar() {
-    const soundRef = useRef<HTMLAudioElement>()
+    const soundRef = useRef<HTMLAudioElement>(null)
 
     const onClick = useCallback(() => {
         if (!soundRef.current) return;
